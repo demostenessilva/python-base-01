@@ -21,5 +21,15 @@ __version__ = "0.0.1"
 __author__ = "Silva"
 __license__ = "Unlicense"
 
+import os
+# Padrão snake case
+current_language = os.getenv("LANG")
 
-print("Hello, World!")
+msg = "Hello, World!"
+
+if current_language == "pt_BR":
+    msg = "Olá, Mundo!"
+elif current_language == "it_IT":
+    msg = "Ciao, Mondo!"
+
+print(msg)
