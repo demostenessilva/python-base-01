@@ -25,15 +25,17 @@ import os
 # Padrão snake case
 current_language = os.getenv("LANG", "en_US")[:5]
 
-msg = "Hello, World!"
+msg = {
+    "en_US": "Hello, World!",
+    "pt_BR": "Olá Mundo!",
+    "it-IT": "Ciao, Mondo!",
+    "es_SP": "Hola Mundo!",
+    "fr_FR": "Bonjour Monde",
+}
+# sets (Hash Table) - O(1) - constante
+# dict (Hash Table)
 
-if current_language == "pt_BR":
-    msg = "Olá, Mundo!"
-elif current_language == "it_IT":
-    msg = "Ciao, Mondo!"
-elif current_language == "es_SP":
-    msg = "Hola, Mundo!"
-elif current_language == "fr_FR":
-    msg = "Bonjour Monde"
+# Ordem de complexidade o(n)
 
-print(msg)
+
+print(msg[current_language])
