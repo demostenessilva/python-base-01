@@ -11,6 +11,10 @@ Tenha a variável LANG devidamente configurada ex:
 
    export LANG=pt_BR
 
+Ou informe através do CLI argument `--lang`
+
+Ou o usuário terá que digitar. 
+
 Execução:
 
     python3 hello.py
@@ -40,7 +44,14 @@ for arg in sys.argv[1:]:
 # Padrão snake case
 current_language = arguments["lang"]
 if current_language is None:
-    current_language = os.getenv("LANG", "en_US")[:5]
+    # TODO: Usar repetição
+    if "LANG" in os.environ:
+        current_language = os.getenv("LANG")
+    else:
+        current_language = input("Qual o seu idioma:")
+
+
+current_language = current_language[:5]
 
 msg = {
     "en_US": "Hello, World!",
