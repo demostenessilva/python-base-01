@@ -17,11 +17,26 @@ Execução:
     ou
     ./hello.py
 """
-__version__ = "0.0.1"
+__version__ = "0.1.3"
 __author__ = "Silva"
 __license__ = "Unlicense"
 
 import os
+import sys
+
+print(f"{sys.argv=}")
+arguments = {
+    "lang": None,
+    "count": None,
+}
+for arg in sys.argv[1:]:
+    # TODO: Tratar ValueError
+    key, value = arg.split("=")
+    if key not in arguments:
+        print(f"Opção invalida {key}")
+    print(key, value)
+
+
 # Padrão snake case
 current_language = os.getenv("LANG", "en_US")[:5]
 
