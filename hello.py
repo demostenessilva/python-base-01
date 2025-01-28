@@ -11,7 +11,7 @@ Tenha a variável LANG devidamente configurada ex:
 
    export LANG=pt_BR
 
-Execução: 
+Execução:
 
     python3 hello.py
     ou
@@ -24,26 +24,28 @@ __license__ = "Unlicense"
 import os
 import sys
 
-print(f"{sys.argv=}")
-arguments = {
-    "lang": None,
-    "count": None,
-}
+# print(f"{sys.argv=}")
+arguments = {"lang": None, "count": 1}
 for arg in sys.argv[1:]:
     # TODO: Tratar ValueError
     key, value = arg.split("=")
+    key = key.lstrip("-").strip()
+    value = value.strip()
     if key not in arguments:
-        print(f"Opção invalida {key}")
-    print(key, value)
+        print(f"Opção invalida `{key}`")
+        sys.exit()
+    arguments[key] = value
 
 
 # Padrão snake case
-current_language = os.getenv("LANG", "en_US")[:5]
+current_language = arguments["lang"]
+if current_language is None:
+    current_language = os.getenv("LANG", "en_US")[:5]
 
 msg = {
     "en_US": "Hello, World!",
     "pt_BR": "Olá Mundo!",
-    "it-IT": "Ciao, Mondo!",
+    "it_IT": "Ciao, Mondo!",
     "es_SP": "Hola Mundo!",
     "fr_FR": "Bonjour Monde",
 }
@@ -53,4 +55,4 @@ msg = {
 # Ordem de complexidade o(n)
 
 
-print(msg[current_language])
+print(msg[current_language] * int(arguments["count"]))
