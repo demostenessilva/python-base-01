@@ -34,6 +34,7 @@ import sys
 # Obtém os argumentos passados na linha de comando, ignorando o primeiro (nome do script)
 arguments = sys.argv[1:]
 
+# TODO: Exceptions
 # Verifica se não há argumentos passados
 if not arguments:
     # Se não houver, solicita ao usuário que insira a operação e os números
@@ -57,7 +58,6 @@ valid_operations = ("sum", "sub", "mul", "div")
 
 # Verifica se a operação fornecida está na lista de operações válidas
 if operation not in valid_operations:
-    # Se não estiver, exibe uma mensagem de erro e encerra o programa
     print("Operação inválida")
     print(f"Operações válidas: {valid_operations}")
     sys.exit(1)  # Encerra o programa com código de erro 1
@@ -67,11 +67,12 @@ validated_nums = []
 
 # Itera sobre os números fornecidos
 for num in nums:
+    # TODO: Repetições while + exceptions
     # Verifica se o número é válido (permite números inteiros ou decimais)
     if not num.replace(".", "").isdigit():
-        # Se não for válido, exibe uma mensagem de erro e encerra o programa
         print(f"Número inválido: {num}")
         sys.exit(1)  # Encerra o programa com código de erro 1
+
     # Converte o número para float (se tiver ponto decimal) ou int (caso contrário)
     if "." in num:
         num = float(num)
@@ -83,6 +84,7 @@ for num in nums:
 # Atribui os números validados às variáveis n1 e n2
 n1, n2 = validated_nums
 
+# TODO: Usar dict de funções
 # Realiza a operação matemática com base na operação fornecida
 if operation == "sum":
     result = n1 + n2  # Soma
