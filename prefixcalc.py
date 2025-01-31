@@ -42,6 +42,8 @@ Versão:
 import os
 import sys
 
+from datetime import datetime
+
 # Versão do programa
 __version__ = "0.1.0"
 
@@ -109,10 +111,13 @@ elif operation == "div":
 # Define o caminho do arquivo de log
 path = os.curdir
 filepath = os.path.join(path, "prefixcal.log")
+timestamp = datetime.now().isoformat()
+user = os.getenv("USER", "anonymous")
+
 
 # Salva a operação e o resultado no arquivo de log
 with open(filepath, "a") as file_:
-    file_.write(f"{operation}, {n1}, {n2} = {result}\n")
+    file_.write(f"{timestamp} - {user} - {operation}, {n1}, {n2} = {result}\n")
 
 # Exibe o resultado da operação
 print(f"O resultado é {result}")
