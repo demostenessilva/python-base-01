@@ -3,40 +3,51 @@
 Calculadora Prefixada.
 
 Funcionamento:
-[operação] [n1] [n2]
+A calculadora aceita operações prefixadas, onde a operação é especificada antes dos operandos. 
+Ela pode ser usada tanto via linha de comando quanto de forma interativa.
+
+Uso via linha de comando:
+    [operação] [n1] [n2]
+
+Uso interativo:
+    Quando executada sem argumentos, a calculadora solicitará a operação e os valores.
 
 Operações suportadas:
-sum -> Soma (+)
-sub -> Subtração (-)
-mul -> Multiplicação (*)
-div -> Divisão (/)
+    sum -> Soma (+)
+    sub -> Subtração (-)
+    mul -> Multiplicação (*)
+    div -> Divisão (/)
 
 Exemplos de uso:
-$ prefixcalc.py sum 5 2
-7
+    $ prefixcalc.py sum 5 2
+    7
 
-$ prefixcalc.py mul 10 5
-50
+    $ prefixcalc.py mul 10 5
+    50
 
-$ prefixcalc.py
-operação: sum
-n1: 5
-n2: 4
-9
-Os resultados serão salvos em `Prefixcal.log`
+    $ prefixcalc.py
+    operação: sum
+    n1: 5
+    n2: 4
+    9
+
+Resultados:
+    Os resultados das operações são salvos em um arquivo de log chamado `Prefixcal.log` no diretório atual.
+
+Versão:
+    Versão atual: 0.1.0
 """
+
+# Importações necessárias
+import os
+import sys
 
 # Versão do programa
 __version__ = "0.1.0"
 
-# Importa a biblioteca sys para manipular argumentos da linha de comando
-import os
-import sys
-
 # Obtém os argumentos passados na linha de comando, ignorando o primeiro (nome do script)
 arguments = sys.argv[1:]
 
-# TODO: Exceptions
 # Verifica se não há argumentos passados
 if not arguments:
     # Se não houver, solicita ao usuário que insira a operação e os números
@@ -69,7 +80,6 @@ validated_nums = []
 
 # Itera sobre os números fornecidos
 for num in nums:
-    # TODO: Repetições while + exceptions
     # Verifica se o número é válido (permite números inteiros ou decimais)
     if not num.replace(".", "").isdigit():
         print(f"Número inválido: {num}")
@@ -86,7 +96,6 @@ for num in nums:
 # Atribui os números validados às variáveis n1 e n2
 n1, n2 = validated_nums
 
-# TODO: Usar dict de funções
 # Realiza a operação matemática com base na operação fornecida
 if operation == "sum":
     result = n1 + n2  # Soma
@@ -97,12 +106,13 @@ elif operation == "mul":
 elif operation == "div":
     result = n1 / n2  # Divisão
 
+# Define o caminho do arquivo de log
 path = os.curdir
 filepath = os.path.join(path, "prefixcal.log")
 
+# Salva a operação e o resultado no arquivo de log
 with open(filepath, "a") as file_:
     file_.write(f"{operation}, {n1}, {n2} = {result}\n")
-
 
 # Exibe o resultado da operação
 print(f"O resultado é {result}")
