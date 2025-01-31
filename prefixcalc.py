@@ -23,12 +23,14 @@ operação: sum
 n1: 5
 n2: 4
 9
+Os resultados serão salvos em `Prefixcal.log`
 """
 
 # Versão do programa
 __version__ = "0.1.0"
 
 # Importa a biblioteca sys para manipular argumentos da linha de comando
+import os
 import sys
 
 # Obtém os argumentos passados na linha de comando, ignorando o primeiro (nome do script)
@@ -94,6 +96,13 @@ elif operation == "mul":
     result = n1 * n2  # Multiplicação
 elif operation == "div":
     result = n1 / n2  # Divisão
+
+path = os.curdir
+filepath = os.path.join(path, "prefixcal.log")
+
+with open(filepath, "a") as file_:
+    file_.write(f"{operation}, {n1}, {n2} = {result}\n")
+
 
 # Exibe o resultado da operação
 print(f"O resultado é {result}")
